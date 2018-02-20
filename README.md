@@ -76,6 +76,8 @@ body {
 
 This will output:
 
+![Demo Screenshot](/graphics/demo.png?raw=true)
+
 _Note_: the grid is provided by another package designed to work in conjunction with gridel [https://github.com/milewski/css-gridish-grid](https://github.com/milewski/css-gridish-grid)
 
 ## Inspiration
