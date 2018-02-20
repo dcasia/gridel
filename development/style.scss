@@ -1,0 +1,47 @@
+//.development-grid {
+//
+//    $colors: teal, red, peru, darkslategray, yellow, green, purple, orange, blue, aquamarine, crimson, magenta;
+//
+//    @each $color in $colors {
+//
+//        > div:nth-child(#{index($colors, $color)}) {
+//            background: $color;
+//            grid-column: 0 / span 1;
+//            //height: 100%;
+//        }
+//
+//    }
+//}
+@import "../source/scss/variables";
+@import "../source/scss/functions";
+@import "../source/scss/mixins";
+
+body {
+    color: white;
+    font-family: sans-serif;
+    > section > div {
+        background: crimson;
+    }
+}
+
+.header {
+    grid-column: 4 / span 6;
+    grid-row: 5 / span 4;
+    text-align: center;
+
+    h1 {
+        @include baseline(2, $skip: 1)
+    }
+    small {
+        @include baseline(1)
+    }
+}
+
+.content {
+    grid-column: 4 / span 6;
+    grid-row: 10 / span 5;
+    text-align: justify;
+    p {
+        @include baseline(1)
+    }
+}

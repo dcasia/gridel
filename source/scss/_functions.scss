@@ -1,0 +1,40 @@
+@function first($list) {
+    @return nth($list, 1);
+}
+
+@function last($list) {
+    @return nth($list, length($list));
+}
+
+@function double($font-size, $line-height, $original-height: $line-height) {
+
+    @if $font-size > $line-height {
+        @return double($font-size, $line-height + $original-height, $original-height)
+    }
+
+    @return $line-height;
+
+}
+
+@function is-nested-selector($parent, $child) {
+
+    @if $parent == $child {
+        @return false;
+    }
+
+    @if length($child) <= 1 {
+        @return false;
+    }
+
+    @each $rule in $parent {
+
+        $index: index($parent, $rule);
+
+        @if nth($child, $index) != $rule {
+            @return false
+        }
+
+    }
+
+    @return true;
+}

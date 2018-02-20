@@ -1,0 +1,6 @@
+@import "values";
+
+$prefix: map-get($grid-values, prefix);
+$breakpoints: map_values(map_get($grid-values, breakpoints));
+$row-height: map_get($grid-values, row-height);
+$rows: map_get($grid-values, rows);

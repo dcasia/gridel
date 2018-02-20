@@ -1,0 +1,65 @@
+@mixin padding($gutter) {
+    .#{$prefix}-padding--horizontal {
+        padding-left: calc(#{$gutter} / 2);
+        padding-right: calc(#{$gutter} / 2);
+    }
+}
+
+@mixin grid($columns, $rows, $height, $gutter) {
+    grid-template-columns: repeat($columns, 1fr);
+    grid-template-rows: repeat($rows, $height * 1rem);
+    @include padding($gutter)
+}
+
+@mixin baseline-image($object-height) {
+
+    $line-height: double($font-size, $row-height);
+
+    $offset: ($line-height - $cap-height * $font-size) / 2;
+
+    margin-top: ($offset - $row-height) + rem;
+    margin-bottom: -($offset - $row-height) + rem;
+
+}
+
+@mixin baseline($font-size, $cap-height: 0.75, $skip: 0) {
+
+    $line-height: double($font-size, $row-height * ($skip + 1));
+
+    font-size: #{$font-size}rem;
+    line-height: #{$line-height}rem;
+    display: block;
+
+    $offset: ($line-height - $cap-height * $font-size) / 2;
+
+    @if variable_exists(parent) {
+
+        @if is-nested-selector(first($x-grid-parent-selector), first(&)) {
+            $offset: $offset + last($x-grid-parent-selector);
+        }
+
+        @include font-spacing($font-size, $row-height, $offset, true);
+
+    } @else {
+        @include font-spacing($font-size, $row-height, $offset);
+    }
+
+    $x-grid-parent-selector: (first(&) ($offset - $row-height) * -1) !global;
+
+    @content;
+
+}
+
+@mixin font-spacing($font-size, $row-height, $offset, $is-nested: false) {
+
+    @if $font-size > $row-height or $is-nested == true {
+        margin-top: ($offset - $row-height) + rem;
+        margin-bottom: -($offset - $row-height) + rem;
+        padding-top: 0;
+    } @else {
+        padding-top: $offset + rem;
+        margin-bottom: -$offset + rem;
+        margin-top: 0;
+    }
+
+}

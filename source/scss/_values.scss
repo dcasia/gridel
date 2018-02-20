@@ -1,0 +1,29 @@
+$grid-values: (
+        prefix: development,
+        breakpoints: (
+                small: (
+                        breakpoint: 47,
+                        columns: 2,
+                        gutter: 25px,
+                        margin: 0
+                ),
+                medium: (
+                        breakpoint: 64,
+                        columns: 12,
+                        gutter: 30px,
+                        margin: 0
+                ),
+                large: (
+                        breakpoint: 90,
+                        columns: 12,
+                        gutter: 30px,
+                        margin: 0
+                )
+        ),
+        rem: 16,
+        row-height: 2,
+        rows: 20,
+        paths: (
+                route: temp
+        )
+);

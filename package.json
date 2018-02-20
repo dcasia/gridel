@@ -1,0 +1,66 @@
+{
+  "name": "gridel",
+  "version": "0.0.0",
+  "author": {
+    "name": "Rafael Milewski",
+    "email": "rafael.milewski@gmail.com",
+    "url": "https://github.com/milewski"
+  },
+  "license": "MIT",
+  "description": "A system that allows the creation of pixel (columns, rows) perfect layout",
+  "homepage": "https://github.com/milewski/gridel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/milewski/gridel"
+  },
+  "bugs": {
+    "url": "https://github.com/milewski/gridel/issues"
+  },
+  "keywords": [
+    "css grid",
+    "css",
+    "sass",
+    "design system",
+    "pixel perfect",
+    "modular leyout",
+    "modular design"
+  ],
+  "main": "bin/index.js",
+  "bin": {
+    "gridel": "bin/index.js"
+  },
+  "files": [
+    "source/scss/*.scss"
+  ],
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "babel source/Compiler.ts -x .ts --out-file bin/index.js",
+    "prestart": "tsc development/webpack.*.ts",
+    "start": "webpack-dev-server --hot --inline --config development/webpack.config.js"
+  },
+  "dependencies": {
+    "breakpoint-sass": "^2.7.1",
+    "jsontosass": "^0.1.1",
+    "fs-extra": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
+    "@babel/plugin-transform-typescript": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@types/fs-extra": "^5.0.0",
+    "@types/node": "^9.4.6",
+    "css-gridish-grid": "^1.0.4",
+    "css-loader": "^0.28.9",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.2",
+    "ts-loader": "^3.5.0",
+    "typescript": "^2.7.2",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
