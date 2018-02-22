@@ -50,6 +50,10 @@ class Compiler {
 
 }
 
-new Compiler(
-    require(path.resolve(rootDir, '.gridelrc'))
-)
+try {
+    new Compiler(
+        fs.readJSONSync(path.resolve(rootDir, '.gridelrc'))
+    )
+} catch (error) {
+    console.log(error)
+}
