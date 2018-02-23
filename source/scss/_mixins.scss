@@ -24,7 +24,7 @@
 
 @mixin baseline($font-size, $cap-height: $cap-height, $skip: 0) {
 
-    $line-height: double($font-size, $row-height * ($skip + 1));
+    $line-height: double($font-size, $row-height);
 
     font-size: #{$font-size}rem;
     line-height: #{$line-height}rem;
@@ -38,10 +38,10 @@
             $offset: $offset + last($x-grid-parent-selector);
         }
 
-        @include font-spacing($font-size, $row-height, $offset, true);
+        @include font-spacing($font-size, $row-height, $offset, $skip, true);
 
     } @else {
-        @include font-spacing($font-size, $row-height, $offset);
+        @include font-spacing($font-size, $row-height, $offset, $skip);
     }
 
     $x-grid-parent-selector: (first(&) ($offset - $row-height) * -1) !global;
@@ -50,16 +50,16 @@
 
 }
 
-@mixin font-spacing($font-size, $row-height, $offset, $is-nested: false) {
+@mixin font-spacing($font-size, $row-height, $offset, $skip, $is-nested: false) {
 
     @if $font-size > $row-height or $is-nested == true {
         margin-top: ($offset - $row-height) + rem;
         margin-bottom: -($offset - $row-height) + rem;
-        padding-top: 0;
+        padding-top: $row-height * $skip + rem;
     } @else {
         padding-top: $offset + rem;
         margin-bottom: -$offset + rem;
-        margin-top: 0;
+        margin-top: $row-height * $skip + rem;
     }
 
 }
