@@ -22,7 +22,7 @@
 
 }
 
-@mixin baseline($font-size, $cap-height: 0.75, $skip: 0) {
+@mixin baseline($font-size, $cap-height: $cap-height, $skip: 0) {
 
     $line-height: double($font-size, $row-height * ($skip + 1));
 
