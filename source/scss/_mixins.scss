@@ -68,20 +68,7 @@
 }
 
 @function clear-units($value) {
-    @if type-of($value) == "number" {
-        @if (unitless($value)) {
-            @return $value;
-        } @else if unit($value) == "em" {
-            @return $value / 1em;
-        } @else if unit($value) == "rem" {
-            @return $value / 1rem;
-        } @else if unit($value) == "px" {
-            @return $value / 1px;
-        }
-    } @else {
-        @warn "Not a number value: #{$value}";
-        @return $value;
-    }
+    @return $number / ($number * 0 + 1);
 }
 
 @mixin baseline($font-size, $cap-height: $cap-height, $skip: 0) {
@@ -96,10 +83,10 @@
 
     $offset: ($line-height - $cap-height * $font-size) / 2;
 
-    @if variable_exists(parent) {
+    @if variable_exists(gridel-grid-parent-selector) {
 
-        @if is-nested-selector(first($x-grid-parent-selector), first(&)) {
-            $offset: $offset + last($x-grid-parent-selector);
+        @if is-nested-selector(map-get($gridel-grid-parent-selector, element), first(&)) {
+            $offset: $offset + map-get($gridel-grid-parent-selector, offset);
         }
 
         @include font-spacing($font-size, $row-height, $offset, $skip, true);
@@ -108,7 +95,11 @@
         @include font-spacing($font-size, $row-height, $offset, $skip);
     }
 
-    $x-grid-parent-selector: (first(&) ($offset - $row-height) * -1) !global;
+    $gridel-grid-parent-selector: (
+            element: first(&),
+            offset: ($offset - $row-height) * -1,
+            skipOffset: $offset
+    ) !global;
 
     @content;
 
