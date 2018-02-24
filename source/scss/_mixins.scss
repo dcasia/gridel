@@ -67,7 +67,7 @@
 
 }
 
-@function clear-units($value) {
+@function clear-units($number) {
     @return $number / ($number * 0 + 1);
 }
 
