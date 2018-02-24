@@ -1,8 +1,17 @@
 @mixin padding($gutter) {
+
     .#{$prefix}-padding--horizontal {
         padding-left: calc(#{$gutter} / 2);
         padding-right: calc(#{$gutter} / 2);
     }
+
+    &.\--padding-horizontal {
+        > * {
+            padding-left: calc(#{$gutter} / 2);
+            padding-right: calc(#{$gutter} / 2);
+        }
+    }
+
 }
 
 @mixin grid($columns, $rows, $height, $gutter) {
