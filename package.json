@@ -1,6 +1,6 @@
 {
   "name": "gridel",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "author": {
     "name": "Rafael Milewski",
     "email": "rafael.milewski@gmail.com",
@@ -40,7 +40,7 @@
     "prepublish": "npm run build",
     "build": "babel source/Compiler.ts -x .ts --out-file bin/index.js",
     "prestart": "tsc development/webpack.*.ts",
-    "start": "webpack-dev-server --hot --inline --config development/webpack.config.js"
+    "start": "webpack-dev-server --hot --inline --no-info --config development/webpack.config.js"
   },
   "dependencies": {
     "breakpoint-sass": "^2.7.1",
@@ -53,18 +53,18 @@
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
     "@babel/plugin-transform-typescript": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
-    "@types/fs-extra": "^5.0.0",
+    "@types/fs-extra": "^5.0.1",
     "@types/node": "^9.4.6",
-    "css-gridish-grid": "^1.0.4",
-    "css-loader": "^0.28.9",
+    "css-gridish-grid": "0.0.1",
+    "css-loader": "^0.28.10",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6",
+    "sass-loader": "^6.0.7",
     "style-loader": "^0.20.2",
     "ts-loader": "^3.5.0",
     "typescript": "^2.7.2",
     "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack-dev-server": "^2.11.2"
   }
 }

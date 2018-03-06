@@ -5,23 +5,25 @@ $grid-values: (
                         breakpoint: 47,
                         columns: 2,
                         gutter: 25px,
-                        margin: 0
+                        margin: 0,
+                        row-height: 1
                 ),
                 medium: (
                         breakpoint: 64,
                         columns: 12,
                         gutter: 30px,
-                        margin: 0
+                        margin: 0,
+                        row-height: 2
                 ),
                 large: (
                         breakpoint: 90,
                         columns: 12,
                         gutter: 30px,
-                        margin: 0
+                        margin: 0,
+                        row-height: 3
                 )
         ),
         rem: 16,
-        row-height: 2,
         rows: 20,
         paths: (
                 route: temp

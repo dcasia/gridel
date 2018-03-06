@@ -1,6 +1,6 @@
 @import '~breakpoint-sass/stylesheets/breakpoint';
-@import "variables";
 @import "functions";
+@import "variables";
 @import "mixins";
 
 body {
@@ -33,13 +33,14 @@ body {
     $break: map_get($current, 'breakpoint');
     $gutter: map_get($current, 'gutter');
     $columns: map_get($current, 'columns');
+    $height: map_get($current, 'row-height');
 
     .#{$prefix}-grid {
         @if first($breakpoints) == $current {
-            @include grid($columns, $rows, $row-height, $gutter);
+            @include grid($columns, $rows, $height, $gutter);
         } @else {
             @include breakpoint(#{$break}rem) {
-                @include grid($columns, $rows, $row-height, $gutter);
+                @include grid($columns, $rows, $height, $gutter);
             }
         }
     }

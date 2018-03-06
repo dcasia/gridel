@@ -80,10 +80,10 @@
     @return $number / ($number * 0 + 1);
 }
 
-@mixin baseline($font-size, $cap-height: $cap-height, $skip: 0) {
+@mixin baseline($font-size, $cap-height: $cap-height, $skip: 0, $for: $first-breakpoint-name) {
 
     $font-size: clear-units($font-size);
-
+    $row-height: map-get(map-get(map-get($grid-values, breakpoints), $for), row-height);
     $line-height: double($font-size, $row-height);
 
     font-size: #{$font-size}rem;
