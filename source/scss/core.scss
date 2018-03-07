@@ -11,7 +11,7 @@ body {
 .#{$prefix}-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: #{map_get(last($breakpoints), breakpoint)}rem;
+    max-width: #{map-get(last($breakpoints), breakpoint)}rem;
     width: 100vw;
 }
 
@@ -30,10 +30,10 @@ body {
 
 @each $current in $breakpoints {
 
-    $break: map_get($current, 'breakpoint');
-    $gutter: map_get($current, 'gutter');
-    $columns: map_get($current, 'columns');
-    $height: map_get($current, 'row-height');
+    $break: map-get($current, 'breakpoint');
+    $gutter: map-get($current, 'gutter');
+    $columns: map-get($current, 'columns');
+    $height: map-get($current, 'row-height');
 
     .#{$prefix}-grid {
         @if first($breakpoints) == $current {

@@ -84,17 +84,14 @@
 
     $font-size: clear-units($font-size);
 
-    @each $current in $breakpoints {
+    @include loop-breakpoints() {
 
-        $break: map_get($current, breakpoint);
-        $row-height: map_get($current, row-height);
-
-        $line-height: double($font-size, $row-height);
+        $line-height: double($font-size, $gridel-row-height);
         $offset: ($line-height - $cap-height * $font-size) / 2;
 
         $is-nested: false;
 
-        @if variable_exists(gridel-grid-parent-selector) {
+        @if variable-exists(gridel-grid-parent-selector) {
 
             @if is-nested-selector(map-get($gridel-grid-parent-selector, element), first(&)) {
                 $offset: $offset + map-get($gridel-grid-parent-selector, offset);
@@ -104,17 +101,11 @@
 
         }
 
-        @if first($breakpoints) == $current {
-            @include font-spacing($font-size, $line-height, $row-height, $offset, $skip, $is-nested);
-        } @else {
-            @include breakpoint(#{$break}rem) {
-                @include font-spacing($font-size, $line-height, $row-height, $offset, $skip, $is-nested);
-            }
-        }
+        @include font-spacing($font-size, $line-height, $gridel-row-height, $offset, $skip, $is-nested);
 
         $gridel-grid-parent-selector: (
                 element: first(&),
-                offset: ($offset - $row-height) * -1,
+                offset: ($offset - $gridel-row-height) * -1,
                 skipOffset: $offset
         ) !global;
 
@@ -143,20 +134,24 @@
 }
 
 @mixin grid-rows($count) {
+    @include loop-breakpoints() {
+        grid-template-rows: repeat($count, $gridel-row-height + rem);
+    }
+}
 
+@mixin loop-breakpoints() {
     @each $current in $breakpoints {
 
-        $break: map_get($current, 'breakpoint');
-        $height: map_get($current, 'row-height');
+        $gridel-breakpoint: map-get($current, breakpoint) !global;
+        $gridel-row-height: map-get($current, row-height) !global;
 
         @if first($breakpoints) == $current {
-            grid-template-rows: repeat($count, $height + rem);
+            @content
         } @else {
-            @include breakpoint(#{$break}rem) {
-                grid-template-rows: repeat($count, $height + rem);
+            @include breakpoint(#{$gridel-breakpoint}rem) {
+                @content
             }
         }
 
     }
-
 }
