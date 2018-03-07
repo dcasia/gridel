@@ -83,38 +83,52 @@
 @mixin baseline($font-size, $cap-height: $cap-height, $skip: 0, $for: $first-breakpoint-name) {
 
     $font-size: clear-units($font-size);
-    $row-height: map-get(map-get(map-get($grid-values, breakpoints), $for), row-height);
-    $line-height: double($font-size, $row-height);
 
-    font-size: #{$font-size}rem;
-    line-height: #{$line-height}rem;
-    display: block;
+    @each $current in $breakpoints {
 
-    $offset: ($line-height - $cap-height * $font-size) / 2;
+        $break: map_get($current, breakpoint);
+        $row-height: map_get($current, row-height);
 
-    @if variable_exists(gridel-grid-parent-selector) {
+        $line-height: double($font-size, $row-height);
+        $offset: ($line-height - $cap-height * $font-size) / 2;
 
-        @if is-nested-selector(map-get($gridel-grid-parent-selector, element), first(&)) {
-            $offset: $offset + map-get($gridel-grid-parent-selector, offset);
+        $is-nested: false;
+
+        @if variable_exists(gridel-grid-parent-selector) {
+
+            @if is-nested-selector(map-get($gridel-grid-parent-selector, element), first(&)) {
+                $offset: $offset + map-get($gridel-grid-parent-selector, offset);
+            }
+
+            $is-nested: true;
+
         }
 
-        @include font-spacing($font-size, $row-height, $offset, $skip, true);
+        @if first($breakpoints) == $current {
+            @include font-spacing($font-size, $line-height, $row-height, $offset, $skip, $is-nested);
+        } @else {
+            @include breakpoint(#{$break}rem) {
+                @include font-spacing($font-size, $line-height, $row-height, $offset, $skip, $is-nested);
+            }
+        }
 
-    } @else {
-        @include font-spacing($font-size, $row-height, $offset, $skip);
+        $gridel-grid-parent-selector: (
+                element: first(&),
+                offset: ($offset - $row-height) * -1,
+                skipOffset: $offset
+        ) !global;
+
     }
-
-    $gridel-grid-parent-selector: (
-            element: first(&),
-            offset: ($offset - $row-height) * -1,
-            skipOffset: $offset
-    ) !global;
 
     @content;
 
 }
 
-@mixin font-spacing($font-size, $row-height, $offset, $skip, $is-nested: false) {
+@mixin font-spacing($font-size, $line-height, $row-height, $offset, $skip, $is-nested: false) {
+
+    font-size: #{$font-size}rem;
+    line-height: #{$line-height}rem;
+    display: block;
 
     @if $font-size > $row-height or $is-nested == true {
         margin-top: ($offset - $row-height) + rem;
