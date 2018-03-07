@@ -127,3 +127,22 @@
     }
 
 }
+
+@mixin grid-rows($count) {
+
+    @each $current in $breakpoints {
+
+        $break: map_get($current, 'breakpoint');
+        $height: map_get($current, 'row-height');
+
+        @if first($breakpoints) == $current {
+            grid-template-rows: repeat($count, $height + rem);
+        } @else {
+            @include breakpoint(#{$break}rem) {
+                grid-template-rows: repeat($count, $height + rem);
+            }
+        }
+
+    }
+
+}
