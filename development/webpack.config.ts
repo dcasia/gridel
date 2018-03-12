@@ -24,10 +24,7 @@ export default (production: boolean) => {
             open: true
         },
         context: process.cwd(),
-        entry: {
-            main: './development/index.ts',
-            style: './source/scss/core.scss'
-        },
+        entry: { main: './development/index.ts' },
         output: {
             path: path.resolve(__dirname, '../temp'),
             publicPath: '/',

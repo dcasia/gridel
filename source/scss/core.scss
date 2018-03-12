@@ -12,7 +12,6 @@ body {
     margin-left: auto;
     margin-right: auto;
     max-width: #{map-get(last($breakpoints), breakpoint)}rem;
-    width: 100vw;
 }
 
 .#{$prefix}-grid {
@@ -30,10 +29,32 @@ body {
 
 @each $current in $breakpoints {
 
-    $break: map-get($current, 'breakpoint');
-    $gutter: map-get($current, 'gutter');
-    $columns: map-get($current, 'columns');
-    $height: map-get($current, 'row-height');
+    $break: map-get($current, breakpoint);
+    $gutter: map-get($current, gutter);
+    $margin: map-get($current, margin);
+    $columns: map-get($current, columns);
+    $height: map-get($current, row-height);
+
+    @if ($margin != null and $margin > 0) {
+        .#{$prefix}-container {
+            @if first($breakpoints) == $current {
+                margin-left: #{$margin}rem;
+                margin-right: #{$margin}rem;
+            } @else if last($breakpoints) != $current {
+                @include breakpoint(#{$break}rem) {
+                    margin-left: #{$margin}rem;
+                    margin-right: #{$margin}rem;
+                }
+            } @else {
+                @include breakpoint(#{$break}rem) {
+                    margin-left: auto;
+                    margin-right: auto;
+                    content: #{$margin};
+                    max-width: calc(#{$break}rem - #{$margin * 2}rem);
+                }
+            }
+        }
+    }
 
     .#{$prefix}-grid {
         @if first($breakpoints) == $current {

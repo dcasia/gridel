@@ -5,21 +5,21 @@
       "breakpoint": 47,
       "columns": 2,
       "gutter": "25px",
-      "margin": 0,
+      "margin": 9,
       "row-height": 1
     },
     "medium": {
       "breakpoint": 64,
       "columns": 12,
       "gutter": "30px",
-      "margin": 0,
+      "margin": 8,
       "row-height": 2
     },
     "large": {
       "breakpoint": 90,
       "columns": 12,
       "gutter": "30px",
-      "margin": 0,
+      "margin": 7,
       "row-height": 3
     }
   },

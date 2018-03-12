@@ -12,13 +12,12 @@
 //
 //    }
 //}
-@import "../source/scss/variables";
-@import "../source/scss/functions";
-@import "../source/scss/mixins";
+@import "../source/scss/core";
 
 body {
     color: white;
     font-family: sans-serif;
+    overflow-y: scroll;
     > section > div {
         background: crimson;
     }
@@ -30,7 +29,7 @@ body {
     text-align: center;
 
     h1 {
-        @include baseline(2, $skip: 1)
+        @include baseline(2, $skip: 2)
     }
     small {
         @include baseline(1)
@@ -39,9 +38,9 @@ body {
 
 .content {
     grid-column: 4 / span 6;
-    grid-row: 10 / span 5;
+    grid-row: 10 / span 4;
     text-align: justify;
     p {
-        @include baseline(1)
+        @include baseline(1, $skip: 1)
     }
 }
