@@ -38,19 +38,18 @@ body {
     @if ($margin != null and $margin > 0) {
         .#{$prefix}-container {
             @if first($breakpoints) == $current {
-                margin-left: #{$margin}rem;
-                margin-right: #{$margin}rem;
+                margin-left: $margin;
+                margin-right: $margin
             } @else if last($breakpoints) != $current {
                 @include breakpoint(#{$break}rem) {
-                    margin-left: #{$margin}rem;
-                    margin-right: #{$margin}rem;
+                    margin-left: $margin;
+                    margin-right: $margin
                 }
             } @else {
                 @include breakpoint(#{$break}rem) {
                     margin-left: auto;
                     margin-right: auto;
-                    content: #{$margin};
-                    max-width: calc(#{$break}rem - #{$margin * 2}rem);
+                    max-width: calc(#{$break}rem - #{$margin * 2});
                 }
             }
         }
