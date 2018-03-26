@@ -93,10 +93,13 @@
 @mixin loop-breakpoints() {
     @each $current in $breakpoints {
 
+        $gridel-is-first: first($breakpoints) == $current !global;
+        $gridel-is-last: last($breakpoints) == $current !global;
+        $gridel-gutter: map-get($current, gutter) !global;
         $gridel-breakpoint: map-get($current, breakpoint) !global;
         $gridel-row-height: map-get($current, row-height) !global;
 
-        @if first($breakpoints) == $current {
+        @if $gridel-is-first {
             @content
         } @else {
             @include breakpoint(#{$gridel-breakpoint}rem) {
