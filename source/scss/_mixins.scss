@@ -96,6 +96,7 @@
         $gridel-is-first: first($breakpoints) == $current !global;
         $gridel-is-last: last($breakpoints) == $current !global;
         $gridel-gutter: map-get($current, gutter) !global;
+        $gridel-margin: map-get($current, gutter) !global;
         $gridel-breakpoint: map-get($current, breakpoint) !global;
         $gridel-row-height: map-get($current, row-height) !global;
 
