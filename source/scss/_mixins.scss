@@ -60,9 +60,9 @@
                 skipOffset: $offset
         ) !global;
 
-    }
+        @content;
 
-    @content;
+    }
 
 }
 

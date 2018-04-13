@@ -1,6 +1,6 @@
 {
   "name": "gridel",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "author": {
     "name": "Rafael Milewski",
     "email": "rafael.milewski@gmail.com",
@@ -48,11 +48,11 @@
     "fs-extra": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@babel/core": "^7.0.0-beta.40",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
-    "@babel/plugin-transform-typescript": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/cli": "^7.0.0-beta.44",
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.44",
+    "@babel/plugin-transform-typescript": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
     "@types/fs-extra": "^5.0.1",
     "@types/node": "^9.4.7",
     "css-gridish-grid": "0.0.1",
@@ -63,7 +63,7 @@
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
     "ts-loader": "^3.5.0",
-    "typescript": "^2.7.2",
+    "typescript": "^2.8.1",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.2"
   }
