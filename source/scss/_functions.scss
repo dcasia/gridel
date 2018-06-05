@@ -6,13 +6,13 @@
     @return nth($list, length($list));
 }
 
-@function double($font-size, $line-height, $original-height: $line-height) {
+@function double($font-size, $line-height, $original-height: $line-height, $counter: 0) {
 
     @if $font-size > $line-height {
-        @return double($font-size, $line-height + $original-height, $original-height)
+        @return double($font-size, $line-height + $original-height, $original-height, $counter + 1)
     }
 
-    @return $line-height;
+    @return $counter;
 
 }
 

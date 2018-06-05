@@ -41,6 +41,6 @@ body {
     grid-row: 10 / span 4;
     text-align: justify;
     p {
-        @include baseline(1, $skip: 1)
+        @include baseline(1rem, $skip: 1, $auto-lines: true)
     }
 }

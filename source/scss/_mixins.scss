@@ -2,7 +2,7 @@
 
     .#{$prefix}-padding--horizontal {
         padding-left: #{$gutter / 2};
-        padding-right: #{$gutter / 2} ;
+        padding-right: #{$gutter / 2};
     }
 
     &.\--padding-horizontal {
@@ -31,13 +31,22 @@
 
 }
 
-@mixin baseline($font-size, $cap-height: $cap-height, $skip: 0, $for: $first-breakpoint-name) {
+@mixin baseline($font-size, $cap-height: $cap-height, $skip: 0, $for: $first-breakpoint-name, $skip-lines: 0, $auto-lines: true) {
 
     $font-size: clear-units($font-size);
 
     @include loop-breakpoints() {
 
-        $line-height: double($font-size, $gridel-row-height);
+        $lines: 0;
+
+        if($skip-lines > 1) {
+            $lines: $skip-lines + 1
+        }
+
+        $counter: double($font-size, $gridel-row-height, $gridel-row-height, if($auto-lines == true, 1, 0));
+        $lines: if($auto-lines == true, $counter, abs($counter + $lines));
+
+        $line-height: $gridel-row-height * $lines;
         $offset: ($line-height - $cap-height * $font-size) / 2;
 
         $is-nested: false;
@@ -52,7 +61,7 @@
 
         }
 
-        @include font-spacing($font-size, $line-height, $gridel-row-height, $offset, $skip, $is-nested);
+        @include font-spacing($font-size, $line-height, $gridel-row-height, $offset, $skip, $lines, $is-nested);
 
         $gridel-grid-parent-selector: (
                 element: first(&),
@@ -66,14 +75,14 @@
 
 }
 
-@mixin font-spacing($font-size, $line-height, $row-height, $offset, $skip, $is-nested: false) {
+@mixin font-spacing($font-size, $line-height, $row-height, $offset, $skip, $skip-lines, $is-nested: false) {
 
     font-size: #{$font-size}rem;
     line-height: #{$line-height}rem;
     display: block;
 
     @if $font-size > $row-height or $is-nested == true {
-        margin-top: ($offset - $row-height) + rem;
+        margin-top: ($offset - $row-height * $skip-lines) + rem;
         margin-bottom: -($offset - $row-height) + rem;
         padding-top: $row-height * $skip + rem;
     } @else {
