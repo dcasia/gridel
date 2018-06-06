@@ -39,14 +39,17 @@
 
         $lines: 0;
 
-        if($skip-lines > 1) {
-            $lines: $skip-lines + 1
-        }
+    if($skip-lines > 1) {
+        $lines: $skip-lines + 1
+    }
 
-        $counter: double($font-size, $gridel-row-height, $gridel-row-height, if($auto-lines == true, 1, 0));
-        $lines: if($auto-lines == true, $counter, abs($counter + $lines));
+        /**
+         * Keep track of how many times the font has to double its rows in order to fit nicely on the screen
+         */
+        $counter: double($font-size, $gridel-row-height, $gridel-row-height, if($auto-lines == true, 1, $skip-lines + 1));
+        $lines: if($auto-lines == true, 1, $counter);
 
-        $line-height: $gridel-row-height * $lines;
+        $line-height: $gridel-row-height * $counter;
         $offset: ($line-height - $cap-height * $font-size) / 2;
 
         $is-nested: false;
@@ -82,7 +85,7 @@
     display: block;
 
     @if $font-size > $row-height or $is-nested == true {
-        margin-top: ($offset - $row-height * $skip-lines) + rem;
+        margin-top: $offset - ($row-height * $skip-lines) + rem;
         margin-bottom: -($offset - $row-height) + rem;
         padding-top: $row-height * $skip + rem;
     } @else {
