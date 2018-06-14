@@ -12,6 +12,10 @@
         }
     }
 
+    &.\--auto-rows {
+        grid-template-rows: min-content;
+    }
+
 }
 
 @mixin grid($columns, $rows, $height, $gutter) {
@@ -34,6 +38,7 @@
 @mixin baseline($font-size, $cap-height: $cap-height, $skip: 0, $for: $first-breakpoint-name, $skip-lines: 0, $auto-lines: true) {
 
     $font-size: clear-units($font-size);
+    $skip: 1 + $skip;
 
     @include loop-breakpoints() {
 
