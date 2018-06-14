@@ -12,10 +12,6 @@
         }
     }
 
-    &.\--auto-rows {
-        grid-template-rows: min-content;
-    }
-
 }
 
 @mixin grid($columns, $rows, $height, $gutter) {

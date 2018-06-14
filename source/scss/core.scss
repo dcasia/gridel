@@ -25,6 +25,10 @@ body {
         height: 100%;
     }
 
+    &.\--auto-rows {
+        grid-template-rows: min-content;
+    }
+
 }
 
 @each $current in $breakpoints {
